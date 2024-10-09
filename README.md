@@ -21,4 +21,217 @@ A linked list is a dynamic data structure made up of nodes, each containing data
 - *At the End* : New node is added after the last node.
 - *At a Specific Position* : Insert after a specified node.
 
-### 
+### 2. Deletion :
+- *From the Beginning* : Remove the head node and update the head pointer.
+- *From the End*: Traverse to the second-to-last node and remove the last node.
+- *From a Specific Position* : Locate the node before the target and adjust pointers to remove the target node.
+
+### 3. Traversal :
+- *Start at Head* : Begin with the head node.
+- *Visit Nodes* : Access the data in the current node.
+- *Move to Next* : Follow the pointer to the next node.
+- *End Condition* : Stop when the next pointer is null.
+
+## Codes 
+### 1.
+```
+//subham
+//entc B2
+//23070123132
+//experiment 17
+#include <iostream>
+using namespace std;
+
+class Link 
+{
+public:
+    int data;
+    Link* next;
+
+    Link(int num) 
+    {
+        data = num;
+        next = NULL;
+    }
+};
+
+void insert_head(Link* &head, int data) 
+{
+    Link* new_node = new Link(data);
+    new_node->next = head;
+    head = new_node;
+}
+
+void disp(Link* head) 
+{
+    Link* temp = head;
+    while (temp != NULL) 
+    {
+        cout << temp->data << "->";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int main() 
+{
+    Link* head = NULL;
+    insert_head(head, 30);
+    disp(head);
+    insert_head(head, 32);
+    disp(head);
+    insert_head(head, 36);
+    disp(head);
+    return 0;
+}
+```
+
+### 2.
+```
+//subham
+//entc B2
+//23070123132
+//experiment 17
+#include <iostream>
+using namespace std;
+
+class Link 
+{
+public:
+    int data;
+    Link* next;
+
+    Link(int num) 
+    {
+        data = num;
+        next = NULL;
+    }
+};
+
+void insert_head(Link* &head, int data) 
+{
+    Link* new_node = new Link(data);
+    new_node->next = head;
+    head = new_node;
+}
+
+void delete_head(Link* &head) 
+{
+    if (head != NULL) 
+    {
+        Link* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+void disp(Link* head) 
+{
+    Link* temp = head;
+    while (temp != NULL) 
+    {
+        cout << temp->data << "->";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int main() 
+{
+    Link* head = NULL;
+    insert_head(head, 30);
+    disp(head);
+    insert_head(head, 32);
+    disp(head);
+    insert_head(head, 36);
+    disp(head);
+   
+    delete_head(head);
+    disp(head);
+    delete_head(head);
+    disp(head);
+   
+    return 0;
+}
+```
+
+### 3.
+```
+//subham
+//entc B2
+//23070123132
+//experiment 17
+#include <iostream>
+using namespace std;
+
+struct Node 
+{
+    int data;
+    Node* next;
+};
+
+void insert(Node*& head, int data) 
+{
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->next = head;
+    head = newNode;
+}
+
+void deleteNode(Node*& head, int key) 
+{
+    Node* temp = head;
+    Node* prev = nullptr;
+    if (temp != nullptr && temp->data == key) 
+    {
+        head = temp->next;
+        delete temp;
+        return;
+    }
+    while (temp != nullptr && temp->data != key) 
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == nullptr) return;
+    prev->next = temp->next;        //update
+    delete temp;
+}
+
+void display(Node* node) 
+{
+    while (node != nullptr) 
+    {
+        cout << node->data << " ";
+        node = node->next;
+    }
+    cout << endl;
+}
+
+int main() 
+{
+    Node* head = nullptr;
+    insert(head, 10);
+    insert(head, 20);
+    insert(head, 30);
+    cout << "Linked List: ";
+    display(head);
+    deleteNode(head, 20);
+    cout << "After Deletion: ";
+    display(head);
+    return 0;
+}
+```
+
+## Outputs :
+### 1.
+
+
+### 2.
+
+
+### 3.
+
+
+## Conclusion :
+The experiment successfully demonstrated the importance and efficiency of linked lists in C++ programming. The implementation highlighted the advantages of linked lists in terms of dynamic memory management and operation efficiency, while also emphasizing the need for careful pointer management to avoid memory leaks or crashes. This experiment forms a crucial step toward understanding more advanced data structures and algorithms.
